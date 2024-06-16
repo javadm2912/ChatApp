@@ -1,0 +1,8 @@
+<div #chatContainer style="overflow-y: auto; height: 400px;" class="mb-3">
+    @for (message of messages; track $index) {
+        <p class="card-text">
+            <span class="text-primary">{{message.senderName}} : </span>
+            <span class="ml-1">{{message.message}}</span>
+        </p>
+    }
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-5" style="min-height: 500px;">
+@if (!openChat) {
+        <div class="text-center h3">به شبکه اجتماعی <span class="text-primary">رجال</span>  بپیوندید</div>
+        <div class="d-flex justify-content-center">
+            <div class="col-9">
+                <main class="form-signin">
+                    <form [formGroup]="userForm" (ngSubmit)="submitForm()" autocomplete="off" class="p-4 border border-3 rounded-3 mt-5">
+                        <h5>نام کاربری خود را وارد کنید</h5>
+                        <div class="form-floating mb-3">
+                            <input formControlName="name" #name type="text" class="form-control" placeholder="نام کاربری"
+                            [class.is.invalid]="submitted && userForm.get('name')?.errors">
+                            <label for="name">نام کاربری</label>
+                            @if (submitted && userForm.get('name')?.hasError('required')) {
+                                <span class="text-danger">نام کاربری الزامی است</span>
+                            }
+                            @if (submitted && userForm.get('name')?.hasError('maxlength')) {
+                                <span class="text-danger">نام کاربری نمی تواند بیشتر از 15 کاراکتر باشد</span>
+                            }
+                            @if (submitted && userForm.get('name')?.hasError('minlength')) {
+                                <span class="text-danger">نام کاربری نمی تواند کمتر از 3 کاراکتر باشد</span>
+                            }
+                        </div>
+    
+                        <div class="d-grid mt-4 px-4">
+                            <button class="btn btn-dark" type="submit">ورود</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    }
+    @else {
+        <app-chat (closeChatEmmitter)="closeChat()"></app-chat>
+    }
+</div>

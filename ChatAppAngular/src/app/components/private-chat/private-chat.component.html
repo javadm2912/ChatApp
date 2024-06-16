@@ -1,0 +1,17 @@
+<div dir="rtl">
+    <div class="modal-header">
+        <button class="btn-close" type="button" (click)="activeModal.dismiss('Cross click')"></button>
+        <h4 class="modal-title">{{toUser}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="card border-secondary">
+            <div class="card-header h3 text-muted text-center">پیام ها</div>
+            <div class="card-body">
+                <app-messages [messages]="chatService.privateMessages"></app-messages>
+            </div>
+            <div class="card-footer">
+                <app-chat-input (contentEmitter)="sendMessage($event)"></app-chat-input>
+            </div>
+        </div>
+    </div>
+</div>

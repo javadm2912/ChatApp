@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-lg-2">
+        <div class="d-grid">
+            <button class="btn btn-primary btn-block" type="button" (click)="backToHome()">خانه</button>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="d-grid">
+            <button class="btn btn-primary btn-block" type="button" (click)="openContacts()">مخاطبین</button>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-lg-2">
+        <app-contacts [users]="chatService.contacts" (selectedUserEmitter)="openUserChat($event)"></app-contacts>
+    </div>
+
+    @if (toUser == null) {
+        <div class="text-center h4 m5 p3"><span>برای شروع ابتدا شخصی را انتخاب کنبد</span></div>
+    }
+    @else {
+        <div class="col-lg-9">
+            <div class="card border-secondary">
+                <div class="card-header h5 text-muted text-center">پیام ها</div>
+                <div class="card-body" style="min-height: 500px;">
+                    <app-messages #messageBox [messages]="chatService.privateMessages"></app-messages>
+                </div>
+                <div class="card-footer">
+                    <app-chat-input (contentEmitter)="sendMessage($event)"></app-chat-input>
+                </div>
+            </div>
+        </div>
+    }
+</div>
